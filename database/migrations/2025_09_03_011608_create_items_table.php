@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');                             // bigint unsigned PK
             $table->unsignedInteger('par_id');                       // NOT NULL in dump
-            $table->unsignedInteger('asset_id')->nullable();
+            $table->unsignedInteger('asset_id');
             $table->string('property_no_raw', 80)->nullable();
             $table->string('item_name', 255)->nullable();
             $table->string('description', 255)->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
 
             $table->foreign('par_id')->references('id')->on('property_ack_receipts')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('asset_id')->references('id')->on('assets')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreign('asset_id')->references('id')->on('assets')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

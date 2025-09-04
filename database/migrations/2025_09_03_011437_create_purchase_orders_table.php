@@ -15,13 +15,13 @@ return new class extends Migration
             $table->increments('id');                                // int unsigned PK
             $table->string('po_number', 60);
             $table->date('po_date')->nullable();
-            $table->unsignedInteger('supplier_id')->nullable();
+            $table->unsignedInteger('supplier_id');
             $table->tinyInteger('status')->default(0);
-            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('created_by');
 
             $table->unique('po_number');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

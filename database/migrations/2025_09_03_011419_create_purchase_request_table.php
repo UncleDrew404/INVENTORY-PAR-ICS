@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('pr_number', 60);
             $table->date('pr_date')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('created_by');
 
             $table->unique('pr_number');
-            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

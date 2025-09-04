@@ -15,27 +15,27 @@ return new class extends Migration
             $table->increments('id');                                // int unsigned PK
             $table->string('par_number', 80);
             $table->date('par_date');
-            $table->unsignedInteger('person_responsible_id')->nullable();
-            $table->unsignedInteger('office_id')->nullable();
-            $table->unsignedInteger('new_accountable_id')->nullable();
-            $table->unsignedInteger('issued_by_id')->nullable();
-            $table->unsignedInteger('previous_par_id')->nullable();
-            $table->unsignedInteger('fund_source_id')->nullable();
-            $table->unsignedInteger('location_id')->nullable();
+            $table->unsignedInteger('person_responsible_id');
+            $table->unsignedInteger('office_id');
+            $table->unsignedInteger('new_accountable_id');
+            $table->unsignedInteger('issued_by_id');
+            $table->unsignedInteger('previous_par_id');
+            $table->unsignedInteger('fund_source_id');
+            $table->unsignedInteger('location_id');
             $table->string('remark', 255)->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('created_by');
 
             $table->unique('par_number');
 
-            $table->foreign('person_responsible_id')->references('id')->on('accountable_persons')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('office_id')->references('id')->on('offices')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('new_accountable_id')->references('id')->on('accountable_persons')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('issued_by_id')->references('id')->on('accountable_persons')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('previous_par_id')->references('id')->on('property_ack_receipts')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('fund_source_id')->references('id')->on('fund_sources')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('location_id')->references('id')->on('locations')->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete()->cascadeOnUpdate();
+            $table->foreign('person_responsible_id')->references('id')->on('accountable_persons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('office_id')->references('id')->on('offices')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('new_accountable_id')->references('id')->on('accountable_persons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('issued_by_id')->references('id')->on('accountable_persons')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('previous_par_id')->references('id')->on('property_ack_receipts')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('fund_source_id')->references('id')->on('fund_sources')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('location_id')->references('id')->on('locations')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
